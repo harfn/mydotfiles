@@ -10,13 +10,15 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set softtabstop=4")
 
 function ToggleColorscheme()
-    if vim.g.colors_name == "ayu" then
-        vim.opt.background = "light"
-        vim.cmd("colorscheme gruvbox")
-    else
-        vim.opt.background = "dark"
-        vim.cmd("colorscheme ayu-mirage")
-    end
+	if vim.g.colors_name == "ayu" then
+		vim.opt.background = "light"
+		vim.cmd("colorscheme gruvbox")
+		require("lualine").setup({ options = { theme = "gruvbox" } })
+	else
+		vim.opt.background = "dark"
+		vim.cmd("colorscheme ayu-mirage")
+		require("lualine").setup({ options = { theme = "ayu_mirage" } })
+	end
 end
 
 -- Füge die Tastenkombination hinzu
