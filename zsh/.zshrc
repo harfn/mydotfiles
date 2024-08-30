@@ -27,3 +27,5 @@ alias projekt_manager='~/scripts/projekt_manager/projekt_manager.sh'
 alias pm='~/scripts/projekt_manager/projekt_manager.sh'
 
 
+export EDITOR=nvim
+export VISUAL=nvim
