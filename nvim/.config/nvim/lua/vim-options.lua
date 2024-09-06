@@ -23,3 +23,5 @@ end
 
 -- Füge die Tastenkombination hinzu
 vim.api.nvim_set_keymap("n", "<leader>d", ":lua ToggleColorscheme()<CR>", { noremap = true, silent = true })
+-- Keymap für die Konvertierung von Markdown zu PDF mit Pandoc
+vim.api.nvim_set_keymap('n', '<leader>mp', ':!pandoc % -o %:r.pdf<CR>', { noremap = true, silent = true })

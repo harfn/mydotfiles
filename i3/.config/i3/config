@@ -189,3 +189,4 @@ bar {
         status_command i3status
 }
 bindsym $mod+i exec firefox
+bindsym $mod+Shift+s exec /home/tobias/mydotfiles/i3/.config/i3/toggle_style.sh

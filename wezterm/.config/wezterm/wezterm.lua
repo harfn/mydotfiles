@@ -1,24 +1,21 @@
+
 local wezterm = require("wezterm")
--- Funktion zum Umschalten des Farbschemas
-function toggle_color_scheme(window)
-    local overrides = window:get_config_overrides() or {}
-    if overrides.color_scheme == "Gruvbox (Gogh)" then
-        overrides.color_scheme = "Ayu Mirage"
-    else
-        overrides.color_scheme = "Gruvbox (Gogh)"
-    end
-    window:set_config_overrides(overrides)
-end
+local colors = require("colors") -- Importiere das Farbschema
 
--- Tastenkombination zum Umschalten hinzufügen
---table.insert(config.keys or {}, {key="d", mods="ALT", action=wezterm.action_callback(toggle_color_scheme)})
+-- Initialisiere die Konfigurationsvariable
+local config = {}
 
-return {
-    --    color_scheme = "Gruvbox (Gogh)",
-    color_scheme = "Ayu Mirage",
-    --window_background_image = "/home/tobias/mydotfiles/wezterm/.config/wezterm/rebel-princess-ian-king.jpg",
-    -- Optionale weitere Einstellungen
+-- Konfiguration
+config = {
+    -- Die restlichen Einstellungen
+    color_scheme = colors.scheme, -- Verwende das importierte Farbschema
+    -- window_background_image = "/home/tobias/mydotfiles/wezterm/.config/wezterm/rebel-princess-ian-king.jpg",
     font = wezterm.font("JetBrains Mono"), -- Beispielhafte Schriftart
     font_size = 18.0,
     audible_bell = "Disabled",
+    keys = config.keys, -- Sicherstellen, dass die Schlüssel in die Konfiguration aufgenommen werden
+window_background_opacity = 0.8, -- Setze die Opazität auf 80%
 }
+
+return config
+
