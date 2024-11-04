@@ -15,6 +15,9 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# cd -> zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
@@ -25,7 +28,10 @@ alias py='/home/tobias/Vorlagen/python_ide.sh'
 xhost +local:root > /dev/null 2>&1
 alias projekt_manager='~/scripts/projekt_manager/projekt_manager.sh'
 alias pm='~/scripts/projekt_manager/projekt_manager.sh'
+alias tt=taskwarrior-tui
 
 
 export EDITOR=nvim
 export VISUAL=nvim
+alias zotero='/opt/zotero/zotero'
+alias ovenv='source *env/bin/activate'

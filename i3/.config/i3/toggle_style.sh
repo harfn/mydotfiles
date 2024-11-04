@@ -5,7 +5,7 @@ THEME_STATUS_FILE="$HOME/.config/current_theme"
 
 # Pfad zum aktuellen Hintergrundbild
 BACKGROUND_DIR="$HOME/Pictures/Backgrounds"
-LIGHT_BACKGROUND="$BACKGROUND_DIR/rebel-light.jpg"
+LIGHT_BACKGROUND="$BACKGROUND_DIR/light.jpg"
 DARK_BACKGROUND="$BACKGROUND_DIR/rebel-dark.jpg"
 
 # Farbschema-Dateien
@@ -24,7 +24,7 @@ fi
 if [ "$CURRENT_THEME" = "dark" ]; then
     # Wechsel zum Light Mode
     cp  ~/.config/wezterm/color-light.lua ~/.config/wezterm/colors.lua --update=all
-    feh --bg-center --image-bg "#CBBFAE" $LIGHT_BACKGROUND
+    feh --bg-fill --image-bg "#CBBFAE" $LIGHT_BACKGROUND
     echo "light" > "$THEME_STATUS_FILE"
 else
     # Wechsel zum Dark Mode

@@ -190,3 +190,12 @@ bar {
 }
 bindsym $mod+i exec firefox
 bindsym $mod+Shift+s exec /home/tobias/mydotfiles/i3/.config/i3/toggle_style.sh
+bindsym $mod+Shift+p exec /home/tobias/mydotfiles/i3/.config/i3/rofi-power-menu.sh
+
+# Für allgemeine Projekte
+bindsym $mod+p  exec --no-startup-id i3-sensible-terminal -e /home/tobias/projects/ProjectHub/project_hub.sh projekt
+
+# Für Uni-Projekte
+
+bindsym $mod+u  exec --no-startup-id i3-sensible-terminal -e /home/tobias/projects/ProjectHub/project_hub.sh uni
+
