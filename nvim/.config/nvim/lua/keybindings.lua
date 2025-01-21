@@ -27,14 +27,13 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Speichern und Beenden
-keymap("n", "<leader>w", ":w<CR>", opts)
+--keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
 keymap("n", "<leader>x", ":x<CR>", opts)
 
 -- Insert mode Keybindings
 -- Mit 'jk' den Insert mode verlassen
 keymap("i", "jk", "<ESC>", opts)
-
 -- Visual mode Keybindings
 -- In Indent-Modus bleiben
 keymap("v", "<", "<gv", opts)
@@ -47,10 +46,40 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- Keybindings für Plugins
 -- Telescope Bindings
-keymap("n", "<Leader>ff", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<Leader>fo", "<cmd>Telescope oldfiles<cr>", opts)
-keymap("n", "<Leader>fb", "<cmd>Telescope buffers<cr>", opts)
-keymap("n", "<Leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+local wk = require("which-key")
+wk.add({
+	{ "<leader>f", group = "(F)ind with Telescope" },
+	{
+		"<leader>fb",
+		"<cmd>Telescope buffers<cr>",
+		desc = "Find Buffers",
+	},
+	{
+		"<leader>ff",
+		"<cmd>Telescope find_files<cr>",
+		desc = "Find Files",
+	},
+	{
+		"<leader>fg",
+		"<cmd>Telescope live_grep<cr>",
+		desc = "Live Grep",
+	},
+	{
+		"<leader>fh",
+		"<cmd>Telescope find_files hidden=true<cr>",
+		desc = "Find Hidden Files",
+	},
+	{
+		"<leader>fo",
+		"<cmd>Telescope oldfiles<cr>",
+		desc = "Old Files",
+	},
+	{
+		"<leader>fn",
+		"<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<cr>",
+		desc = "Find in Config",
+	},
+})
 
 -- LSP Bindings
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -60,6 +89,7 @@ vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, opts)
 
 -- Terminal mode Keybindings
 -- Terminal-Navigation
@@ -78,12 +108,11 @@ vim.api.nvim_set_keymap("n", "<leader>rr", ":call RSendSelection()<CR>", { norem
 keymap("n", "<leader>sf", "ggVG:SlimeSend<CR>", opts)
 -- SlimeSend mit <Leader><Enter> im Normalmodus
 --keymap("n", "<leader><CR>", [[:lua SlimeCeckSendPara()<CR>]], opts)
-keymap("n", "<leader><CR>","<Plug>SlimeParagraphSend))", opts)
+keymap("n", "<leader><CR>", "<Plug>SlimeParagraphSend))", opts)
 keymap("n", "<leader>sl", "<Plug>SlimeLineSend", opts)
 keymap("v", "<leader><CR>", "<Plug>SlimeRegionSend", opts)
 keymap("n", "<leader>sp", "<Plug>SlimeParagraphSend", opts)
 keymap("n", "<leader>s<CR>", "<Plug>SlimeConfig", opts)
-
 
 -- Keybinding oder Command
 --vim.api.nvim_set_keymap("n", "<leader>ss", [[:lua GetSlimePane()<CR>]], { noremap = true, silent = true })

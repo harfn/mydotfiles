@@ -30,9 +30,14 @@ xhost +local:root > /dev/null 2>&1
 alias projekt_manager='~/scripts/projekt_manager/projekt_manager.sh'
 alias pm='~/scripts/projekt_manager/projekt_manager.sh'
 alias tt=taskwarrior-tui
-
+alias i3lock='i3lock --image ~/Pictures/Backgrounds/lock.png --scale'
 
 export EDITOR=nvim
 export VISUAL=nvim
 alias zotero='/opt/zotero/zotero'
 alias ovenv='source *env/bin/activate'
+export BAT_THEME=gruvbox-light
+alias snes='snes9x  -xvideo -maxaspect -xineramahead 1 -v8  -fullscreen'
+fastfetch
+
+
