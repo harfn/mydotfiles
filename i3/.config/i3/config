@@ -187,6 +187,9 @@ exec_always --no-startup-id /home/tobias/mydotfiles/polybar/.config/polybar/laun
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bindsym $mod+i exec firefox
+bindsym $mod+z exec zotero
+bindsym $mod+b exec /home/tobias/mydotfiles/i3/.config/i3/select_monitor.sh
+bindsym $mod+Shift+b exec xrandr --auto && i3 restart
 bindsym $mod+Shift+s exec /home/tobias/mydotfiles/i3/.config/i3/toggle_style.sh
 bindsym $mod+Shift+p exec /home/tobias/mydotfiles/i3/.config/i3/rofi-power-menu.sh
 
@@ -207,6 +210,7 @@ exec --no-startup-id blueman-applet
 # Alle Fenster mit einem 2 Pixel breiten Rahmen versehen
 default_border  pixel 2
 hide_edge_borders smart
+for_window [class=".*"] title_format ""
 ###############################################################################################
 ################################          Colors             ##################################
 ###############################################################################################
