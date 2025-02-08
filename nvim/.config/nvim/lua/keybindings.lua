@@ -45,9 +45,10 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- Keybindings für Plugins
--- Telescope Bindings
 local wk = require("which-key")
 wk.add({
+
+-- Telescope Bindings
 	{ "<leader>f", group = "(F)ind with Telescope" },
 	{
 		"<leader>fb",
@@ -78,6 +79,18 @@ wk.add({
 		"<leader>fn",
 		"<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<cr>",
 		desc = "Find in Config",
+	},
+    -- Markdown
+	{ "<leader>m", group = "Markdown", icon = '󰍔' },
+    {
+		"<leader>mp",
+		"<cmd>MarkdownPreview<CR>",
+		desc = "Start Preview",
+	},
+    {
+		"<leader>ms",
+		"<cmd>MarkdownPreviewStop<CR>",
+		desc = "Stop Preview",
 	},
 })
 
