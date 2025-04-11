@@ -29,7 +29,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Speichern und Beenden
 --keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
-keymap("n", "<leader>x", ":x<CR>", opts)
+keymap("n", "<leader>x", ":bp<bar>sp<bar>bn<bar>bd<CR>", opts)
 
 -- Insert mode Keybindings
 -- Mit 'jk' den Insert mode verlassen
@@ -66,8 +66,7 @@ wk.add({
 		desc = "Live Grep",
 	},
 	{
-		"<leader>fh",
-		"<cmd>Telescope find_files hidden=true<cr>",
+		"<leader>fh",		"<cmd>Telescope find_files hidden=true<cr>",
 		desc = "Find Hidden Files",
 	},
 	{
@@ -92,6 +91,13 @@ wk.add({
 		"<cmd>MarkdownPreviewStop<CR>",
 		desc = "Stop Preview",
 	},
+    { "<leader>v", group = "(V)im Optionen" },
+    {
+		"<leader>vs",
+		"<cmd>lua vim.wo.spell = not vim.wo.spell<CR>",
+		desc = "(S)pell aktivieren/togglen",
+	},
+
 })
 
 -- LSP Bindings
@@ -135,3 +141,11 @@ keymap("n", "<leader>d", ":lua ToggleColorscheme()<CR>", opts)
 
 -- Konvertierung von Markdown zu PDF mit Pandoc
 keymap("n", "<leader>mp", ":!pandoc % -o %:r.pdf<CR>", opts)
+
+
+-- luasnip
+-- Für Insert- und Select-Modus: 
+keymap("i", "<Tab>", "v:lua.require'luasnip'.jump(1)", opts)
+keymap("s", "<Tab>", "v:lua.require'luasnip'.jump(1)", opts)
+keymap("i", "<S-Tab>", "v:lua.require'luasnip'.jump(-1)", opts)
+keymap("s", "<S-Tab>", "v:lua.require'luasnip'.jump(-1)", opts)

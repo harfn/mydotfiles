@@ -31,6 +31,8 @@ alias projekt_manager='~/scripts/projekt_manager/projekt_manager.sh'
 alias pm='~/scripts/projekt_manager/projekt_manager.sh'
 alias tt=taskwarrior-tui
 alias i3lock='i3lock --image ~/Pictures/Backgrounds/lock.png --scale'
+alias lfc='/home/tobias/scripts/list_files_clipboard.sh'
+
 
 export EDITOR=nvim
 export VISUAL=nvim

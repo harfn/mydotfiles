@@ -1,6 +1,6 @@
 return {
     {
-        "hrsh7th/cmp-nvim-lsp"
+        "hrsh7th/cmp-nvim-lsp",
     },
     {
         "L3MON4D3/LuaSnip",
@@ -10,10 +10,18 @@ return {
         },
     },
     {
+        "f3fora/cmp-spell",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+    },
+    {
         "hrsh7th/nvim-cmp",
         config = function()
             local cmp = require("cmp")
             require("luasnip.loaders.from_vscode").lazy_load()
+            local ls = require("luasnip")
+            ls.filetype_extend("vimwiki", { "markdown" })
 
             cmp.setup({
                 snippet = {
@@ -37,6 +45,7 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- For luasnip users.
+                    { name = "spell" }, -- <== Neu: Spell-Vorschläge
                 }, {
                     { name = "buffer" },
                 }),

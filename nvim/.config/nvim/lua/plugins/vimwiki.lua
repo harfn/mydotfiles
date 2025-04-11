@@ -5,10 +5,11 @@ return {
         -- VimWiki-Konfiguration
         vim.g.vimwiki_list = {
             {
-                path = '~/vimwiki/',  -- Standardverzeichnis für dein Wiki
+                path = '~/wiki/',  -- Standardverzeichnis für dein Wiki
                 syntax = 'markdown', -- Markdown-Syntax verwenden
                 ext = 'md',          -- Dateiendung für die Notizen
             }
         }
+        vim.g.vimwiki_global_ext = 0 -- Aktiviert VimWiki nur in dem definierten Verzeichnis
     end,
 }

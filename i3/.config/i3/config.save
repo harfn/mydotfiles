@@ -96,8 +96,8 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -164,10 +164,14 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym odiaeresis resize grow width 10 px or 10 ppt
+        bindsym j resize shrink 
+        width 10 px or 10 ppt 
+        bindsym k resize grow 
+        height 10 px or 10 ppt 
+        bindsym l resize shrink 
+        height 10 px or 10 ppt 
+        bindsym odiaeresis resize 
+        grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -193,8 +197,7 @@ bindsym $mod+Shift+b exec xrandr --auto && i3 restart
 bindsym $mod+Shift+s exec /home/tobias/mydotfiles/i3/.config/i3/toggle_style.sh
 bindsym $mod+Shift+p exec /home/tobias/mydotfiles/i3/.config/i3/rofi-power-menu.sh
 #vimWiki
-bindsym $mod+w exec --no-startup-id i3-sensible-terminal -e  nvim /home/tobias/wiki/index.md 
-
+bindsym $mod+w exec --no-startup-id wezterm start -- nvim +VimwikiIndex
 # Für allgemeine Projekte
 bindsym $mod+p  exec --no-startup-id i3-sensible-terminal -e /home/tobias/ProjectHub/project_hub.sh projekt
 
