@@ -8,6 +8,16 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set softtabstop=4")
+vim.opt.spelllang = { "de", "en" }
+vim.opt_local.spell = false
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "txt", "vimwiki" },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+})
+
+
 
 -- Pfad zur Datei mit dem Theme-Status
 local THEME_STATUS_FILE = vim.fn.expand("~/.config/current_theme")
