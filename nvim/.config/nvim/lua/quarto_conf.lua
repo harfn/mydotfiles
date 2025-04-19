@@ -103,4 +103,11 @@ function M.send_region()
 	end
 end
 
+function M.goto_next_code_block()
+  local next_pos = vim.fn.search("^```{", "W")
+  if next_pos == 0 then
+    print("Kein weiterer Codeblock gefunden.")
+  end
+end
+
 return M

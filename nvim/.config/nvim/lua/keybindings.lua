@@ -100,6 +100,14 @@ wk.add({
     },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "quarto",
+  callback = function()
+    wk.add({
+        {"<Tab>", "<cmd>lua require('quarto_conf').goto_next_code_block()<CR>"}})
+  end,
+})
+
 wk.add({
     { "<leader>q",  group = "Quarto" },                        -- Hauptgruppe für Quarto
 
