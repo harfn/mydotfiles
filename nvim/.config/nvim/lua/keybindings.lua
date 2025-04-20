@@ -11,10 +11,10 @@ vim.g.mapleader = " " -- Leerzeichen als Leader
 
 -- Normal mode Keybindings
 -- Fenster-Navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Fenstergrößen ändern
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
