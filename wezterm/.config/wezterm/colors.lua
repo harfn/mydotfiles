@@ -1,7 +1,7 @@
-
 -- colors.lua
 local colors = {}
 
-colors.scheme = "Ayu Mirage"
+colors.scheme = "Gruvbox (Gogh)"
 
 return colors
+

@@ -7,6 +7,7 @@ local config = {}
 
 -- Konfiguration
 config = {
+    enable_tab_bar =false,
     -- Die restlichen Einstellungen
     color_scheme = colors.scheme, -- Verwende das importierte Farbschema
     -- window_background_image = "/home/tobias/mydotfiles/wezterm/.config/wezterm/rebel-princess-ian-king.jpg",

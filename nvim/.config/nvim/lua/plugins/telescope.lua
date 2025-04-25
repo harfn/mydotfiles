@@ -13,10 +13,10 @@ return {
             require("telescope").setup({
                 extensions = {
                     fzf = {
-                        fuzzy = true,                    -- Fuzzy-Matching aktivieren
+                        fuzzy = true, -- Fuzzy-Matching aktivieren
                         override_generic_sorter = true, -- Standard-Sorter durch FZF ersetzen
-                        override_file_sorter = true,    -- Datei-Sorter durch FZF ersetzen
-                        case_mode = "smart_case",       -- Groß-/Kleinschreibung intelligent behandeln
+                        override_file_sorter = true, -- Datei-Sorter durch FZF ersetzen
+                        case_mode = "smart_case", -- Groß-/Kleinschreibung intelligent behandeln
                     },
                 },
             })
@@ -38,4 +38,3 @@ return {
         end,
     },
 }
-
