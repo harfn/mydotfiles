@@ -198,11 +198,10 @@ bindsym $mod+t exec --no-startup-id i3-sensible-terminal -e /home/tobias/mydotfi
 bindsym $mod+w exec --no-startup-id i3-sensible-terminal -e  nvim /home/tobias/wiki/index.md 
 
 # Für allgemeine Projekte
-bindsym $mod+p  exec --no-startup-id i3-sensible-terminal -e /home/tobias/ProjectHub/project_hub.sh projekt
-
+bindsym $mod+p  exec positron
 # Für Uni-Projekte
 
-bindsym $mod+u  exec --no-startup-id i3-sensible-terminal -e /home/tobias/ProjectHub/project_hub.sh uni
+bindsym $mod+u  exec --no-startup-id i3-sensible-terminal -e positon 
 
 # KDE Connect automatisch starten
 exec --no-startup-id kdeconnect-indicator &
