@@ -9,9 +9,9 @@ if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
   source /usr/share/zsh/manjaro-zsh-config
 fi
 # use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
-fi
+#if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+#  source /usr/share/zsh/manjaro-zsh-prompt
+#fi
 
 # set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -44,9 +44,10 @@ alias ovenv='source *env/bin/activate'
 export bat_theme=gruvbox-light
 alias snes='snes9x  -xvideo -maxaspect -xineramahead 1 -v8  -fullscreen'
 
-#eval "$(starship init zsh)"
-    tmux run-shell "$RESURRECT"
+
+tmux run-shell "$RESURRECT"
 
 fastfetch
 
 
+eval "$(starship init zsh)"
