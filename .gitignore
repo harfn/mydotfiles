@@ -2,7 +2,7 @@
 
 
 # Neovim/Vim Spell-Dateien
-/nvim/.config/nvim/spell/*.spl
-/nvim/.config/nvim/spell/*.sug
-/nvim/.config/nvim/spell/*.add
+nvim/spell/*.spl
+nvim/spell/*.sug
+nvim/spell/*.add
 
