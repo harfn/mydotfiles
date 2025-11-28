@@ -265,3 +265,21 @@ end, { expr = true, noremap = true })
 keymap("s", "<Tab>", "v:lua.require'luasnip'.jump(1)", opts)
 keymap("i", "<S-Tab>", "v:lua.require'luasnip'.jump(-1)", opts)
 keymap("s", "<S-Tab>", "v:lua.require'luasnip'.jump(-1)", opts)
+
+wk.add({
+    -- =======================
+    -- Path-Gruppe
+    -- =======================
+    { "<leader>p", group = "Path" },
+
+    {
+        "<leader>py",
+        function()
+            local path = vim.fn.expand("%:p")      -- absoluter Pfad der aktuellen Datei
+            vim.fn.setreg("+", path)              -- ins System-Clipboard kopieren
+            print("Yanked path: " .. path)
+        end,
+        desc = "Yank file path",
+        mode = "n",
+    },
+})

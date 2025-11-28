@@ -8,6 +8,10 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set softtabstop=4")
+
+-- System-Clipboard standardmäßig benutzen
+vim.opt.clipboard = "unnamedplus"
+
 vim.opt.spelllang = { "de", "en" }
 vim.opt_local.spell = false
 vim.api.nvim_create_autocmd("FileType", {
@@ -16,7 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
-
 
 
 -- Pfad zur Datei mit dem Theme-Status
@@ -72,4 +75,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
         SetColorschemeFromFile()
     end
 })
-
+-- ich hatte einen Fehle,aber ich wies nicht was das macht
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0

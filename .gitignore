@@ -1,1 +1,8 @@
 /tmux/.config/tmux/plugins/
+
+
+# Neovim/Vim Spell-Dateien
+/nvim/.config/nvim/spell/*.spl
+/nvim/.config/nvim/spell/*.sug
+/nvim/.config/nvim/spell/*.add
+
