@@ -92,7 +92,7 @@ wk.add({
         "<cmd>MarkdownPreviewStop<CR>",
         desc = "Stop Preview",
     },
-    { "<leader>v",  group = "(V)im Optionen" },
+    { "<leader>v", group = "(V)im Optionen" },
     {
         "<leader>vs",
         "<cmd>lua vim.wo.spell = not vim.wo.spell<CR>",
@@ -101,24 +101,25 @@ wk.add({
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "quarto",
-  callback = function()
-    wk.add({
-        {"<Tab>", "<cmd>lua require('quarto_conf').goto_next_code_block()<CR>"}})
-  end,
+    pattern = "quarto",
+    callback = function()
+        wk.add({
+            { "<Tab>", "<cmd>lua require('quarto_conf').goto_next_code_block()<CR>" },
+        })
+    end,
 })
 
 wk.add({
     { "<leader>q",  group = "Quarto" },                        -- Hauptgruppe für Quarto
 
-    { "<leader>qi", group = "Code Insert",   mode = { "n", "v" } }, -- Untergruppe für Code-Chunks
-     {
+    { "<leader>qi", group = "Code Insert", mode = { "n", "v" } }, -- Untergruppe für Code-Chunks
+    {
         "<C-i>",
         "<cmd>lua require('quarto_conf').insert_py_chunk()<CR>",
         desc = "Insert Python Chunk",
         mode = { "n", "v" },
     },
-{
+    {
         "<leader>qip",
         "<cmd>lua require('quarto_conf').insert_py_chunk()<CR>",
         desc = "Insert Python Chunk",
@@ -150,68 +151,6 @@ wk.add({
         mode = "n",
     },
 })
-
--- Slime
--- SlimeSend mit <Leader><Enter> im Normalmodus
---keymap("n", "<leader><CR>", "<Plug>SlimeParagraphSend))", opts)
-keymap("v", "<leader><CR>", "<Plug>SlimeRegionSend", opts)
-
-
-wk.add({
-    {
-        "<leader><CR>",
-        function()
-            local file_type = vim.bo.filetype
-            if file_type == "quarto" then
-          require('quarto_conf').send_cell()
-        else
-          return "<Plug>SlimeParagraphSend))"
-        end
-        end,
-        desc = "Send Code",
-        mode = "n",
-    },
-
-    -- n = {
-    -- ["<leader><CR>"] = {
-    --   function()
-    --     local file_type = vim.bo.filetype
-    --     if file_type == "quarto" then
-    --       print("Das ist ein Quarto file")
-    --     else
-    --       print("Not a Quarto file; default send not defined.")
-    --     end
-    --   end,
-    --   desc = "Send Cell (Quarto)"
-    -- },
-    -- },
-    -- Slime: Sende z. B. den gesamten Buffer oder einzelne Abschnitte
-    { "<leader>s", group = "(S)end with Slime" },
-    {
-        "<leader>sf",
-        "ggVG:SlimeSend<CR>",
-        desc = "Send Full Buffer (Slime)",
-        mode = "n",
-    },
-    {
-        "<leader>sl",
-        "<Plug>SlimeLineSend",
-        desc = "Send Current Line (Slime)",
-        mode = "n",
-    },
-    {
-        "<leader>sp",
-        "<Plug>SlimeParagraphSend",
-        desc = "Send Paragraph (Slime)",
-        mode = "n",
-    },
-    {
-        "<leader>s<CR>",
-        "<Plug>SlimeConfig",
-        desc = "Slime Config",
-        mode = "n",
-    },
-}, { prefix = "<leader>" })
 
 -- LSP Bindings science
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -254,12 +193,12 @@ Wenn ja, wird zum nächsten Platzhalter gewechselt, andernfalls werden 4 Leerzei
 Dies passt das Verhalten der <Tab>-Taste kontextsensitiv an (Snippets vs. normalen Einzug).
 --]]
 vim.keymap.set("i", "<Tab>", function()
-  if require("luasnip").jumpable(1) then
-    require("luasnip").jump(1)
-    return ""
-  else
-    return "    "
-  end
+    if require("luasnip").jumpable(1) then
+        require("luasnip").jump(1)
+        return ""
+    else
+        return "    "
+    end
 end, { expr = true, noremap = true })
 
 keymap("s", "<Tab>", "v:lua.require'luasnip'.jump(1)", opts)
@@ -275,11 +214,70 @@ wk.add({
     {
         "<leader>py",
         function()
-            local path = vim.fn.expand("%:p")      -- absoluter Pfad der aktuellen Datei
-            vim.fn.setreg("+", path)              -- ins System-Clipboard kopieren
+            local path = vim.fn.expand("%:p") -- absoluter Pfad der aktuellen Datei
+            vim.fn.setreg("+", path) -- ins System-Clipboard kopieren
             print("Yanked path: " .. path)
         end,
         desc = "Yank file path",
         mode = "n",
     },
 })
+
+----------------------------------------------------------------------------
+-- Which-Key Mappings für Slime
+-----------------------------------------------------------------------------
+
+wk.add({
+    -- Kontextabhängig: Quarto → Cell, sonst → aktuelle Zeile
+    {
+        "<leader><CR>",
+        function()
+            local file_type = vim.bo.filetype
+            if file_type == "quarto" then
+                -- In Quarto: aktuellen Code-Cell schicken
+                require("quarto_conf").send_cell()
+            else
+                -- In allen anderen Files: aktuelle Zeile senden
+                local keys = vim.api.nvim_replace_termcodes("<Plug>SlimeLineSend", true, false, true)
+                vim.api.nvim_feedkeys(keys, "n", false)
+            end
+        end,
+        desc = "Send Cell (Quarto) / Line (Slime)",
+        mode = "n",
+    },
+
+    -- Visual Mode: markierte Region senden
+    {
+        "<leader><CR>",
+        "<Plug>SlimeRegionSend",
+        desc = "Send Visual Selection (Slime)",
+        mode = "v",
+    },
+
+    -- Slime: Sende z. B. den gesamten Buffer oder einzelne Abschnitte
+    { "<leader>s", group = "(S)end with Slime" },
+    {
+        "<leader>sf",
+        "ggVG:SlimeSend<CR>",
+        desc = "Send Full Buffer (Slime)",
+        mode = "n",
+    },
+    {
+        "<leader>sl",
+        "<Plug>SlimeLineSend",
+        desc = "Send Current Line (Slime)",
+        mode = "n",
+    },
+    {
+        "<leader>sp",
+        "<Plug>SlimeParagraphSend",
+        desc = "Send Paragraph (Slime)",
+        mode = "n",
+    },
+    {
+        "<leader>s<CR>",
+        "<Plug>SlimeConfig",
+        desc = "Slime Config",
+        mode = "n",
+    },
+}, { prefix = "<leader>" })
