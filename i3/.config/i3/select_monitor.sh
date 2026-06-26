@@ -1,42 +1,45 @@
 #!/bin/bash
-# Wähle Monitorposition mit rofi
 
-selected_option=$(echo -e "right\nleft\nup\nHDMI_only" | rofi -dmenu -i -p "Position des HDMI Monitors")
+ex_screen="DP-1"        # extern, z.B. DP-1 oder HDMI-1
+internal_screen="eDP-1" # intern, oft eDP-1 (bitte mit `xrandr` prüfen)
 
-# Prüfen, ob HDMI-A-0 verbunden ist
-if ! xrandr | grep -q "HDMI-A-0 connected"; then
-    notify-send "Fehler" "HDMI-A-0 ist nicht verbunden!"
-    exit 1
+selected_option=$(printf "right\nleft\nup\nHDMI_only\n" | rofi -dmenu -i -p "Position des HDMI Monitors")
+
+# Prüfen, ob $ex_screen verbunden ist
+if ! xrandr | grep -q "^$ex_screen connected"; then
+  notify-send "Fehler" "$ex_screen ist nicht verbunden!"
+  exit 1
 fi
 
-xrandr --auto  # Stellt sicher, dass alle Monitore erkannt werden
+change_applied=false
 
-change_applied=false  # Flag, um zu prüfen, ob sich etwas geändert hat
-
-case $selected_option in
-    right)
-        xrandr --output eDP --left-of HDMI-A-0 --auto
-        change_applied=true
-        ;;
-    left)
-        xrandr --output eDP --right-of HDMI-A-0 --auto
-        change_applied=true
-        ;;
-    up)
-        xrandr --output eDP --below HDMI-A-0 --auto
-        change_applied=true
-        ;;
-    HDMI_only)
-        xrandr --output eDP --off --output HDMI-A-0 --primary --auto
-        change_applied=true
-        ;;
-    *)
-        exit 0  # Falls keine Auswahl getroffen wurde, abbrechen
-        ;;
+case "$selected_option" in
+  right)
+    xrandr --output "$internal_screen" --left-of "$ex_screen" --auto \
+           --output "$ex_screen" --auto
+    change_applied=true
+    ;;
+  left)
+    xrandr --output "$internal_screen" --right-of "$ex_screen" --auto \
+           --output "$ex_screen" --auto
+    change_applied=true
+    ;;
+  up)
+    xrandr --output "$internal_screen" --below "$ex_screen" --auto \
+           --output "$ex_screen" --auto
+    change_applied=true
+    ;;
+  HDMI_only)
+    xrandr --output "$internal_screen" --off \
+           --output "$ex_screen" --primary --auto
+    change_applied=true
+    ;;
+  *)
+    exit 0
+    ;;
 esac
 
-# Warte 1 Sekunde, damit xrandr die Änderungen sauber verarbeitet
 if [ "$change_applied" = true ]; then
-    sleep 1
-    i3-msg restart
+  sleep 1
+  i3-msg restart
 fi

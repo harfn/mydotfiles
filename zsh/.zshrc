@@ -12,7 +12,7 @@ fi
 #if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
 #  source /usr/share/zsh/manjaro-zsh-prompt
 #fi
-
+setopt interactivecomments
 # set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -51,6 +51,15 @@ fastfetch
 bindkey -v
 
 eval "$(starship init zsh)"
+
+# for yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -185,3 +185,28 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Linux-Menü & Power-Menü
 bindsym $mod+space exec /home/tobias/scripts/linux_menue.sh
 bindsym $mod+Escape exec /home/tobias/mydotfiles/i3/.config/i3/rofi-power-menu.sh
+
+
+####################################################################################
+###############################     screenshots       ##############################
+####################################################################################
+
+# Vollbild -> Datei
+bindsym Mod1+Print exec --no-startup-id maim ~/Pictures/screenshot-$(date +%F-%H%M%S).png
+
+# Vollbild -> Clipboard
+bindsym Shift+Print exec --no-startup-id maim  | xclip -selection clipboard -t image/png
+
+# Bereich auswählen -> Clipboard
+bindsym Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+
+####################################################################################
+###############################     bildschrim       ##############################
+####################################################################################
+
+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +5%
+
+bindsym $mod+F5 exec --no-startup-id xsct 6500
+bindsym $mod+F6 exec --no-startup-id xsct 3500

@@ -9,7 +9,7 @@ return {
       },
       codeRunner = {
         enabled = true,
-        default_method = "slime",
+        default_method = "molten",
       },
     },
     dependencies = {
@@ -34,4 +34,3 @@ return {
     },
   },
 }
-
