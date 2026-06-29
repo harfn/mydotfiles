@@ -16,6 +16,10 @@ setopt interactivecomments
 # set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+export EDITOR=nvim
+export VISUAL="$EDITOR"
+
+
 # cd -> zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -28,7 +32,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias wiki="vim +VimwikiIndex"
 
-alias py='/home/tobias/vorlagen/python_ide.sh'
+alias py='python'
 xhost +local:root > /dev/null 2>&1
 alias projekt_manager='~/scripts/projekt_manager/projekt_manager.sh'
 alias pm='~/scripts/projekt_manager/projekt_manager.sh'
@@ -37,9 +41,6 @@ alias i3lock='i3lock --image ~/pictures/backgrounds/lock.png --scale'
 alias lfc='/home/tobias/scripts/list_files_clipboard.sh'
 
 
-export editor=nvim
-export visual=nvim
-alias zotero='/opt/zotero/zotero'
 alias ovenv='source *env/bin/activate'
 export bat_theme=gruvbox-light
 alias snes='snes9x  -xvideo -maxaspect -xineramahead 1 -v8  -fullscreen'

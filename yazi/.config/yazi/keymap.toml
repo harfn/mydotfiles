@@ -1,0 +1,9 @@
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin enter-or-open"
+desc = "Enter directory and cd there, or open file"
+
+[[mgr.prepend_keymap]]
+on   = "q"
+run  = "quit --no-cwd-file"
+desc = "Quit without cd"
