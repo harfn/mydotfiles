@@ -1,0 +1,85 @@
+# NeoMutt Hauptkonfiguration
+# Verwaltet über GNU Stow:
+# ~/mydotfiles/neomutt/.config/neomutt/neomuttrc
+
+# ------------------------------------------------------------
+# Allgemein
+# ------------------------------------------------------------
+
+set use_from = yes
+set envelope_from = yes
+set editor = "nvim -c 'setlocal spell spelllang=de,en'"
+
+# ------------------------------------------------------------
+# Maildir
+# ------------------------------------------------------------
+
+set mbox_type = Maildir
+
+# Standardaccount beim Start
+source ~/.config/neomutt/accounts/uni
+
+# ------------------------------------------------------------
+# Versand
+# ------------------------------------------------------------
+
+set sendmail_wait = 0
+
+# ------------------------------------------------------------
+# Anzeige
+# ------------------------------------------------------------
+
+set sort = reverse-date
+set sort_aux = last-date-received
+
+set index_format = "%4C %Z %{%Y-%m-%d %H:%M} %-20.20F %s"
+
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop = yes
+set menu_scroll = yes
+set markers = no
+
+# ------------------------------------------------------------
+# Cache
+# ------------------------------------------------------------
+
+set header_cache = "~/.cache/neomutt/headers"
+set message_cachedir = "~/.cache/neomutt/bodies"
+
+# ------------------------------------------------------------
+# HTML-Mails
+# ------------------------------------------------------------
+
+auto_view text/html
+alternative_order text/plain text/html
+set mailcap_path = "~/.config/neomutt/mailcap"
+
+# ------------------------------------------------------------
+# Sidebar
+# ------------------------------------------------------------
+
+set sidebar_visible = yes
+set sidebar_width = 32
+set sidebar_short_path = yes
+set sidebar_folder_indent = yes
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+
+bind index,pager B sidebar-toggle-visible
+bind index,pager <down> sidebar-next
+bind index,pager <up> sidebar-prev
+bind index,pager <right> sidebar-open
+
+# ------------------------------------------------------------
+# Bedienung
+# ------------------------------------------------------------
+
+macro index,pager O "<shell-escape>mbsync -a<enter>" "Alle Mailaccounts synchronisieren"
+macro index,pager o "<change-folder>+INBOX<enter>" "Inbox öffnen"
+
+# ------------------------------------------------------------
+# Accountwechsel
+# ------------------------------------------------------------
+
+macro index,pager <f2> "<enter-command>source ~/.config/neomutt/accounts/uni<enter><change-folder>+INBOX<enter>" "Account: Uni"
+macro index,pager <f3> "<enter-command>source ~/.config/neomutt/accounts/ravenschlag_de<enter><change-folder>+INBOX<enter>" "Account: ravenschlag.de"
