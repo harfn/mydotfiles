@@ -81,5 +81,7 @@ macro index,pager o "<change-folder>+INBOX<enter>" "Inbox öffnen"
 # Accountwechsel
 # ------------------------------------------------------------
 
-macro index,pager <f2> "<enter-command>source ~/.config/neomutt/accounts/uni<enter><change-folder>+INBOX<enter>" "Account: Uni"
-macro index,pager <f3> "<enter-command>source ~/.config/neomutt/accounts/ravenschlag_de<enter><change-folder>+INBOX<enter>" "Account: ravenschlag.de"
+macro index,pager <f2> "<enter-command>source ~/.config/neomutt/accounts/uni<enter><change-folder>!<enter>" "Account: Uni"
+macro index,pager <f3> "<enter-command>source ~/.config/neomutt/accounts/ravenschlag_de<enter><change-folder>!<enter>" "Account: ravenschlag.de"
+
+

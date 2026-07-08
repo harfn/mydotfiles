@@ -10,3 +10,4 @@ nvim/spell/*.add
 # Generated mail configs
 msmtp/.config/msmtp/config
 neomutt/.config/neomutt/accounts/
+isync/.mbsyncrc
