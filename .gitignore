@@ -1,10 +1,14 @@
 /tmux/.config/tmux/plugins/
+/herdr/.config/herdr/plugins/
+/herdr/.config/herdr/plugins.json
+/herdr/.config/herdr/session.json
+/herdr/.config/herdr/herdr-client.log
 
 
 # Neovim/Vim Spell-Dateien
-nvim/spell/*.spl
-nvim/spell/*.sug
-nvim/spell/*.add
+/nvim/.config/nvim/spell/*.spl
+/nvim/.config/nvim/spell/*.sug
+/nvim/.config/nvim/spell/*.add
 
 
 # Generated mail configs
