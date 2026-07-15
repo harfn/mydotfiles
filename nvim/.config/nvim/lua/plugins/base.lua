@@ -4,7 +4,9 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require("config.theme").apply_base_theme()
+      if require("config.profile").current() == "base" then
+        require("config.theme").apply_base_theme()
+      end
     end,
   },
   {

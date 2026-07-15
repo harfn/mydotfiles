@@ -1,8 +1,10 @@
 return {
   {
     "morhetz/gruvbox",
+    lazy = false,
+    priority = 1100,
     config = function()
-      vim.g.gruvbox_contrast_light = "soft"
+      require("config.theme").apply_ide_theme()
     end,
   },
   {

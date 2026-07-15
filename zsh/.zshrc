@@ -16,7 +16,7 @@ setopt interactivecomments
 # set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-export EDITOR=nvim
+export EDITOR='env NVIM_PROFILE=nvim_ide nvim'
 export VISUAL="$EDITOR"
 
 
@@ -28,9 +28,9 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in mb
 alias more=less
 
-alias vi='nvim'
-alias vim='nvim'
-alias wiki="vim +VimwikiIndex"
+alias vi='NVIM_PROFILE=nvim_ide nvim'
+alias vim='NVIM_PROFILE=nvim_ide nvim'
+alias wiki='NVIM_PROFILE=nvim_ide nvim +VimwikiIndex'
 
 alias py='python'
 xhost +local:root > /dev/null 2>&1
