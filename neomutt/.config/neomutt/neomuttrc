@@ -27,19 +27,20 @@ set sendmail_wait = 0
 
 # ------------------------------------------------------------
 # Anzeige
+source ~/.config/neomutt/colors/current.muttrc
 # ------------------------------------------------------------
 
 set sort = reverse-date
 set sort_aux = last-date-received
 
-set index_format = "%4C %Z %{%Y-%m-%d %H:%M} %-20.20F %s"
+set index_format = "%4C %Z %{%m/%d %H:%M} %-18.18F %s"
 
 set pager_index_lines = 10
 set pager_context = 3
 set pager_stop = yes
 set menu_scroll = yes
 set markers = no
-
+set status_format = "---NeoMutt: %f [Msgs:%m %?n?New:%n ?%?d?Del:%d ?%?t?Tag:%t ?]---(%s/%S)---"
 # ------------------------------------------------------------
 # Cache
 # ------------------------------------------------------------
@@ -84,4 +85,24 @@ macro index,pager o "<change-folder>+INBOX<enter>" "Inbox öffnen"
 macro index,pager <f2> "<enter-command>source ~/.config/neomutt/accounts/uni<enter><change-folder>!<enter>" "Account: Uni"
 macro index,pager <f3> "<enter-command>source ~/.config/neomutt/accounts/ravenschlag_de<enter><change-folder>!<enter>" "Account: ravenschlag.de"
 
+
+
+
+
+
+# ------------------------------------------------------------
+# Vim-Keys
+# ------------------------------------------------------------
+source ~/.config/neomutt/keys/vim-keys.rc ~/.config/neomutt/keys/vim-keys.rc
+
+# ------------------------------------------------------------
+# Mailbox statistics / sidebar counts
+# ------------------------------------------------------------
+
+set mail_check_stats = yes
+set mail_check_stats_interval = 30
+set mail_check = 30
+
+# Zähler manuell neu berechnen
+macro index,pager Cs "<check-stats>" "Mailbox-Zähler neu berechnen"
 

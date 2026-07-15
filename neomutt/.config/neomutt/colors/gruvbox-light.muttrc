@@ -1,0 +1,96 @@
+# Gruvbox Light for NeoMutt
+# Ruhige Variante: Gruvbox-Light-Farben, aber normaler Hintergrund = default.
+
+# bg0    = 229
+# bg1    = 223
+# bg2    = 250
+# bg3    = 248
+# bg4    = 246
+# gray   = 244
+# fg0    = 235
+# fg1    = 237
+# fg2    = 239
+# fg3    = 241
+# fg4    = 243
+# red    = 88
+# green  = 100
+# yellow = 136
+# blue   = 24
+# purple = 96
+# aqua   = 66
+# orange = 130
+
+uncolor *
+
+color attachment  color24  default
+color bold        color235 default
+color error       color88  default
+color hdrdefault  color243 default
+color indicator   color235 color223
+color markers     color246 default
+color normal      color237 default
+color quoted      color239 default
+color quoted1     color66  default
+color quoted2     color239 default
+color quoted3     color66  default
+color quoted4     color239 default
+color quoted5     color66  default
+color search      color229 color130
+color signature   color66  default
+color status      color229 color239
+color tilde       color246 default
+color tree        color100 default
+color underline   color237 color250
+
+color sidebar_divider    color239 default
+color sidebar_new        color100 default
+color sidebar_indicator  color235 color223
+color sidebar_highlight  color130 default
+color sidebar_flagged    color130 default
+color sidebar_spoolfile  color24  default
+
+color index color100 default ~N
+color index color66  default ~O
+color index color24  default ~P
+color index color136 default ~F
+color index color96  default ~Q
+color index color88  default ~=
+color index color229 color237 ~T
+color index color229 color88  ~D
+
+color header color136 default "^(To:|From:)"
+color header color100 default "^Subject:"
+color header color66  default "^X-Spam-Status:"
+color header color66  default "^Received:"
+color header color130 default "^Date:"
+
+# URLs / Hosts
+color body color100 default "[a-z]{3,255}://[[:graph:]]*"
+color body color100 default "([-[:alnum:]]+\\.)+([0-9]{1,3}|[-[:alpha:]]+)/[[:graph:]]*"
+color body color100 default "([-[:alnum:]]+\\.){2,255}[-[:alpha:]]{2,10}"
+
+# Mail addresses
+color body color130 default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body color130 default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+# Smileys / emphasis
+color body color229 color136 "[;:]-*[)>(<lt;|]"
+color body color235 default "\\*[- A-Za-z]+\\*"
+
+# PGP / GPG
+color body color136 default "^-.*PGP.*-*"
+color body color100 default "^gpg: Good signature from"
+color body color88  default "^gpg: Can't.*$"
+color body color136 default "^gpg: WARNING:.*$"
+color body color88  default "^gpg: BAD signature from"
+color body color88  default "^gpg: Note: This key has expired!"
+color body color100 default "^Good signature from:"
+color body color88  default "^.?BAD.? signature from:"
+color body color100 default "^Verification successful"
+color body color88  default "^Verification [^s][^[:space:]]*$"
+
+color compose header            color237 default
+color compose security_encrypt  color96  default
+color compose security_sign     color24  default
+color compose security_both     color100 default
+color compose security_none     color130 default

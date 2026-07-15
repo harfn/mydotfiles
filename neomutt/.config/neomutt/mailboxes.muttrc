@@ -1,0 +1,17 @@
+# Mailboxen mit Icons
+unmailboxes *
+
+named-mailboxes "󰇮 Inbox"        +INBOX
+named-mailboxes "󰊢 Entwürfe"     +Entwürfe
+named-mailboxes "󰆍 Gesendet"     +Gesendet
+named-mailboxes "󰛌 Papierkorb"   +Papierkorb
+named-mailboxes "󰗃 Archiv"       +Archiv
+named-mailboxes "󰚩 Spam"         +Spam
+named-mailboxes "󰖷 Junk"         +Junk-E-Mail
+
+named-mailboxes "󰇮 Inbox"               +INBOX
+named-mailboxes "󰊢 Entwürfe"            +Entwürfe
+named-mailboxes "󰆍 Gesendete Elemente"  +Gesendete Elemente
+named-mailboxes "󰛌 Gelöschte Elemente"  +Gelöschte Elemente
+named-mailboxes "󰗃 Archiv"              +Archiv
+named-mailboxes "󰚩 Junk"                +Junk-E-Mail
