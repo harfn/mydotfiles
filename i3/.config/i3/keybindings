@@ -210,3 +210,14 @@ bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +5%
 
 bindsym $mod+F5 exec --no-startup-id xsct 6500
 bindsym $mod+F6 exec --no-startup-id xsct 3500
+
+
+####################################################################################
+############################     Spracheingabe     ################################
+####################################################################################
+
+# Deutsch: Alt + Leertaste einmal drücken
+bindsym --release Mod1+space exec --no-startup-id ~/.local/bin/dictate -d
+
+# Englisch, Terminalmodus: Alt + Shift + Leertaste einmal drücken
+bindsym --release Mod1+Shift+space exec --no-startup-id ~/.local/bin/dictate -et
