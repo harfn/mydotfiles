@@ -7,7 +7,6 @@ return {
   },
 
   {
-    -- wenn bei dir noch "williamboman/mason-lspconfig.nvim" steht, kannst du das auch lassen
     "mason-org/mason-lspconfig.nvim",
     dependencies = {
       "neovim/nvim-lspconfig",
@@ -16,12 +15,12 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- 🔹 Default-Einstellungen für alle LSPs
+      -- Default-Einstellungen für alle LSPs
       vim.lsp.config("*", {
         capabilities = capabilities,
       })
 
-      -- 🔹 Spezielle Einstellungen für Lua
+      -- Lua
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
@@ -32,16 +31,18 @@ return {
         },
       })
 
-      -- 🔹 Spezielle Einstellungen für R
+      -- R
       vim.lsp.config("r_language_server", {
         settings = {
           r = {
-            rpath = { linux = "/usr/bin/R" }, -- an dein System angepasst
+            rpath = { linux = "/usr/bin/R" },
           },
         },
       })
 
-      -- Mason-LSPConfig: installiert & aktiviert die Server
+      -- Fortran: erstmal fortls statt fortitude
+      vim.lsp.config("fortls", {})
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
@@ -49,8 +50,16 @@ return {
           "marksman",
           "r_language_server",
           "bashls",
+          "fortls",
         },
-        -- automatic_enable = true ist default, wir müssen es nicht extra setzen
+
+        -- Wichtig:
+        -- Fortitude ist bei dir installiert, aber deine Version kann kein "fortitude server".
+        automatic_enable = {
+          exclude = {
+            "fortitude",
+          },
+        },
       })
     end,
   },
