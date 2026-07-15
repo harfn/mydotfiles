@@ -1,3 +1,7 @@
+if vim.env.NVIM_PROFILE ~= "nvim_ide" then
+  return
+end
+
 local opts = { silent = true, buffer = true }
 
 -- Standard-Slime-Shortcut für Python: Ctrl-c Ctrl-c
@@ -8,4 +12,3 @@ vim.keymap.set("v", "<C-c><C-c>", "<Plug>SlimeRegionSend", opts)
 vim.keymap.set("n", "<localleader>ss", ":SlimeConfig<CR>", opts)
 vim.keymap.set("n", "<localleader>rr", "<Plug>SlimeLineSend", opts)
 vim.keymap.set("v", "<localleader>rr", "<Plug>SlimeRegionSend", opts)
-

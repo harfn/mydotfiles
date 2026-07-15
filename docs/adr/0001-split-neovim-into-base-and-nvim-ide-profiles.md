@@ -1,0 +1,3 @@
+# Split Neovim Into Base and Nvim IDE Profiles
+
+The Neovim configuration is split into a portable `base` profile and an extended `nvim_ide` profile. `base` is the default and contains lightweight editor behavior, syntax highlighting, Telescope, which-key, and a single stable `ayu_dark` theme for machines where the dotfiles are intentionally installed; `nvim_ide` layers on top via `NVIM_PROFILE=nvim_ide` and adds IDE-oriented capabilities such as LSP, completion, formatting, debugging, Quarto/REPL workflows, extra theme variants, and other profile-specific options, keymaps, autocmds, and plugins.

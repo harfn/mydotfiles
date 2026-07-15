@@ -1,3 +1,7 @@
+if vim.env.NVIM_PROFILE ~= "nvim_ide" then
+  return
+end
+
 local ok, runner = pcall(require, "quarto.runner")
 if not ok then
 	return
@@ -21,4 +25,3 @@ vim.keymap.set(
 vim.keymap.set("n", "<localleader>rA", function()
 	runner.run_all(true)
 end, vim.tbl_extend("force", opts, { desc = "Quarto: run all cells (multi-lang)" }))
-
