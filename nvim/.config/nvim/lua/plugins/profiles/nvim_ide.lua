@@ -31,7 +31,6 @@ return {
     ft = "markdown",
     config = function()
       vim.g.table_mode_corner = "|"
-      vim.keymap.set("n", "<leader>tm", ":TableModeToggle<CR>", { noremap = true, silent = true })
     end,
   },
   {
@@ -148,94 +147,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      local cmp_enabled = true
-      local spell_enabled = false
-
-      local function get_sources()
-        local sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-        }
-        if spell_enabled then
-          table.insert(sources, { name = "spell" })
-        end
-        return cmp.config.sources(sources, {
-          { name = "buffer" },
-        })
-      end
-
-      cmp.setup({
-        enabled = function()
-          local ft = vim.bo.filetype
-          if ft == "markdown" or ft == "vimwiki" then
-            if vim.b.cmp_markdown_enabled ~= nil then
-              return vim.b.cmp_markdown_enabled
-            end
-            return false
-          end
-          return cmp_enabled
-        end,
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
-          ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        }),
-        sources = get_sources(),
-      })
-
-      vim.keymap.set("n", "<leader>vc", function()
-        local ft = vim.bo.filetype
-        if ft == "markdown" or ft == "vimwiki" then
-          vim.b.cmp_markdown_enabled = not (vim.b.cmp_markdown_enabled or false)
-          vim.notify("cmp for " .. ft .. ": " .. (vim.b.cmp_markdown_enabled and "on" or "off"))
-          return
-        end
-
-        cmp_enabled = not cmp_enabled
-        vim.notify("cmp global: " .. (cmp_enabled and "on" or "off"))
-      end, { desc = "Toggle completion" })
-
-      vim.keymap.set("n", "<leader>vS", function()
-        spell_enabled = not spell_enabled
-        cmp.setup({ sources = get_sources() })
-        vim.notify("cmp spell: " .. (spell_enabled and "on" or "off"))
-      end, { desc = "Toggle cmp spell source" })
-
-      vim.keymap.set("i", "<Tab>", function()
-        if luasnip.jumpable(1) then
-          luasnip.jump(1)
-          return ""
-        end
-        return "    "
-      end, { expr = true, noremap = true })
-
-      vim.keymap.set("s", "<Tab>", function()
-        luasnip.jump(1)
-      end, { silent = true })
-      vim.keymap.set("i", "<S-Tab>", function()
-        luasnip.jump(-1)
-      end, { silent = true })
-      vim.keymap.set("s", "<S-Tab>", function()
-        luasnip.jump(-1)
-      end, { silent = true })
+      require("config.profiles.nvim_ide.cmp").setup()
     end,
   },
   {
@@ -258,57 +170,6 @@ return {
       "nvim-neotest/nvim-nio",
       "jay-babu/mason-nvim-dap.nvim",
       "leoluz/nvim-dap-go",
-    },
-    keys = {
-      {
-        "<F5>",
-        function()
-          require("dap").continue()
-        end,
-        desc = "Debug continue",
-      },
-      {
-        "<F1>",
-        function()
-          require("dap").step_into()
-        end,
-        desc = "Debug step into",
-      },
-      {
-        "<F2>",
-        function()
-          require("dap").step_over()
-        end,
-        desc = "Debug step over",
-      },
-      {
-        "<F3>",
-        function()
-          require("dap").step_out()
-        end,
-        desc = "Debug step out",
-      },
-      {
-        "<leader>b",
-        function()
-          require("dap").toggle_breakpoint()
-        end,
-        desc = "Toggle breakpoint",
-      },
-      {
-        "<leader>B",
-        function()
-          require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end,
-        desc = "Set conditional breakpoint",
-      },
-      {
-        "<F7>",
-        function()
-          require("dapui").toggle()
-        end,
-        desc = "Toggle debug UI",
-      },
     },
     config = function()
       local dap = require("dap")
@@ -476,15 +337,6 @@ return {
         },
       }
       vim.g.vimwiki_global_ext = 0
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "vimwiki",
-        callback = function()
-          vim.keymap.set("n", "<leader>wl", function()
-            local termcodes = vim.api.nvim_replace_termcodes("<C-x><C-o>", true, false, true)
-            vim.api.nvim_feedkeys("i[[" .. termcodes, "n", false)
-          end, { buffer = true, desc = "Insert link to existing wiki page" })
-        end,
-      })
     end,
   },
 }
