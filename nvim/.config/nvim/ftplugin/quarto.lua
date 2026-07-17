@@ -10,6 +10,9 @@ end
 local opts = { silent = true, buffer = true }
 
 vim.keymap.set("n", "<localleader>rc", runner.run_cell, vim.tbl_extend("force", opts, { desc = "Quarto: run cell" }))
+vim.keymap.set("n", "<C-CR>", function()
+  require("config.profiles.nvim_ide.quarto").send_cell()
+end, vim.tbl_extend("force", opts, { desc = "Send current code chunk" }))
 vim.keymap.set(
 	"n",
 	"<localleader>rl",

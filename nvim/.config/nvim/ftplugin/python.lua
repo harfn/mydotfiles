@@ -4,11 +4,20 @@ end
 
 local opts = { silent = true, buffer = true }
 
--- Standard-Slime-Shortcut für Python: Ctrl-c Ctrl-c
-vim.keymap.set("n", "<C-c><C-c>", "<Plug>SlimeLineSend", opts)
-vim.keymap.set("v", "<C-c><C-c>", "<Plug>SlimeRegionSend", opts)
+vim.keymap.set("n", "<C-c><C-c>", function()
+  require("config.profiles.nvim_ide.herdr").send_line()
+end, opts)
+vim.keymap.set("n", "<C-CR>", function()
+  require("config.profiles.nvim_ide.herdr").run_python_file(vim.api.nvim_buf_get_name(0))
+end, opts)
+vim.keymap.set("v", "<C-c><C-c>", function()
+  require("config.profiles.nvim_ide.herdr").send_visual()
+end, opts)
 
--- Lokale Convenience-Mappings für Slime
-vim.keymap.set("n", "<localleader>ss", ":SlimeConfig<CR>", opts)
-vim.keymap.set("n", "<localleader>rr", "<Plug>SlimeLineSend", opts)
-vim.keymap.set("v", "<localleader>rr", "<Plug>SlimeRegionSend", opts)
+vim.keymap.set("n", "<localleader>ss", "<cmd>HerdrSetPane<CR>", opts)
+vim.keymap.set("n", "<localleader>rr", function()
+  require("config.profiles.nvim_ide.herdr").send_line()
+end, opts)
+vim.keymap.set("v", "<localleader>rr", function()
+  require("config.profiles.nvim_ide.herdr").send_visual()
+end, opts)

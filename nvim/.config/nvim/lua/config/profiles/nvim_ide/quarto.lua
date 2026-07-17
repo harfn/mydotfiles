@@ -51,21 +51,20 @@ end
 
 function M.send_cell()
   if vim.b.quarto_is_r_mode == nil then
-    vim.fn["slime#send_cell"]()
+    require("config.profiles.nvim_ide.herdr").send_cell()
     return
   end
 
   if vim.b.quarto_is_r_mode == true then
-    vim.g.slime_python_ipython = 0
     local is_python = require("otter.tools.functions").is_otter_language_context("python")
     if is_python and not vim.b.reticulate_running then
-      vim.fn["slime#send"]("reticulate::repl_python()\r")
+      require("config.profiles.nvim_ide.herdr").send_text("reticulate::repl_python()")
       vim.b.reticulate_running = true
     elseif not is_python and vim.b.reticulate_running then
-      vim.fn["slime#send"]("exit\r")
+      require("config.profiles.nvim_ide.herdr").send_text("exit")
       vim.b.reticulate_running = false
     end
-    vim.fn["slime#send_cell"]()
+    require("config.profiles.nvim_ide.herdr").send_cell()
   end
 end
 

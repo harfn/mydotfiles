@@ -270,56 +270,6 @@ return {
     ft = { "quarto", "python", "r" },
   },
   {
-    "jpalardy/vim-slime",
-    config = function()
-      vim.g.slime_target = "tmux"
-      vim.g.slime_bracketed_paste = 1
-      vim.g.slime_no_mappings = 1
-      vim.g.slime_dont_ask_default = 1
-
-      vim.api.nvim_create_user_command("SlimeSetTmuxPane", function()
-        local pane = vim.fn.input("tmux pane (for example :.1 or 0:1.0): ")
-        if pane == "" then
-          vim.notify("Aborted.")
-          return
-        end
-
-        vim.g.slime_default_config = {
-          socket_name = "default",
-          target_pane = pane,
-        }
-        vim.notify("Slime target pane -> " .. pane)
-      end, {})
-
-      local function slime_tmux_send_raw(cmd)
-        local cfg = vim.g.slime_default_config or {}
-        if not cfg.target_pane then
-          vim.notify("Kein tmux target_pane gesetzt. Erst :SlimeSetTmuxPane ausfuehren.")
-          return
-        end
-
-        local full_cmd = string.format(
-          "tmux send-keys -t %s %s C-m",
-          cfg.target_pane,
-          vim.fn.shellescape(cmd)
-        )
-        os.execute(full_cmd)
-      end
-
-      vim.api.nvim_create_user_command("ReplPy", function()
-        slime_tmux_send_raw("ipython")
-      end, {})
-
-      vim.api.nvim_create_user_command("ReplR", function()
-        slime_tmux_send_raw("R")
-      end, {})
-
-      vim.api.nvim_create_user_command("ReplBash", function()
-        slime_tmux_send_raw("bash")
-      end, {})
-    end,
-  },
-  {
     "vimwiki/vimwiki",
     lazy = false,
     init = function()
