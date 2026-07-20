@@ -35,21 +35,80 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "python",
+      local parsers = {
+        "bash",
+        "lua",
+        "vim",
+        "vimdoc",
+        "python",
+        "r",
+        "markdown",
+        "markdown_inline",
+        "json",
+        "yaml",
+        "toml",
+        "latex",
+      }
+
+      require("nvim-treesitter").install(parsers)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "sh",
+          "bash",
           "lua",
-          "markdown",
+          "vim",
+          "help",
+          "python",
           "r",
-          "javascript",
-          "typescript",
+          "markdown",
           "json",
+          "yaml",
+          "toml",
+          "tex",
         },
-        highlight = { enable = true },
+        callback = function()
+          vim.treesitter.start()
+        end,
       })
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    opts = {
+      formatters_by_ft = {
+        python = {
+          "ruff_fix",
+          "ruff_format",
+        },
+        lua = {
+          "stylua",
+        },
+        sh = {
+          "shfmt",
+        },
+        bash = {
+          "shfmt",
+        },
+        json = {
+          "jq",
+        },
+        jsonc = {
+          "jq",
+        },
+        tex = {
+          "latexindent",
+        },
+      },
+      format_on_save = {
+        timeout_ms = 3000,
+        lsp_format = "fallback",
+      },
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",

@@ -18,7 +18,12 @@ map("n", "gD", vim.lsp.buf.declaration, opts)
 map("n", "gr", vim.lsp.buf.references, opts)
 map("n", "gi", vim.lsp.buf.implementation, opts)
 map("n", "<leader>rn", vim.lsp.buf.rename, opts)
-map("n", "<leader>gf", vim.lsp.buf.format, opts)
+map({ "n", "v" }, "<leader>cf", function()
+  require("conform").format({
+    async = true,
+    lsp_format = "fallback",
+  })
+end, { desc = "Datei formatieren" })
 
 map("t", "<C-h>", "<C-\\><C-N><C-w>h", opts)
 map("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)

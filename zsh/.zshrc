@@ -1,5 +1,5 @@
 # use powerline
-#use_powerline="true"
+use_powerline="true"
 # has weird character width
 # example:
 #    is not a diamond
@@ -8,6 +8,7 @@ has_widechars="false"
 if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
   source /usr/share/zsh/manjaro-zsh-config
 fi
+export PATH="$HOME/.local/bin:$PATH"
 # use manjaro zsh prompt
 #if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
 #  source /usr/share/zsh/manjaro-zsh-prompt
@@ -16,21 +17,28 @@ setopt interactivecomments
 # set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-export EDITOR='env NVIM_PROFILE=nvim_ide nvim'
+export EDITOR="$HOME/.local/bin/editor"
 export VISUAL="$EDITOR"
-
 
 # cd -> zoxide
 eval "$(zoxide init --cmd cd zsh)"
+alias l="eza --icons --sort type"
+alias ls="eza"
+alias ll="eza -l  --icons"
+alias la="eza -la  --icons"
+alias lt="eza --icons --sort time --reverse"
+alias tree="eza --tree  --icons"
 
 alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in mb
+alias df="df -h"                          # human-readable sizes
+alias free="free -m"                      # show sizes in mb
 alias more=less
 
-alias vi='NVIM_PROFILE=nvim_ide nvim'
-alias vim='NVIM_PROFILE=nvim_ide nvim'
-alias wiki='NVIM_PROFILE=nvim_ide nvim +VimwikiIndex'
+alias vi='$EDITOR'
+alias vim='$EDITOR'
+alias nvim='$EDITOR'
+alias wiki='$EDITOR +VimwikiIndex'
+
 
 alias py='python'
 xhost +local:root > /dev/null 2>&1

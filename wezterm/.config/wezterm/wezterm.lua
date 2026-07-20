@@ -7,8 +7,8 @@ config.enable_tab_bar = false
 config.color_scheme = colors.scheme
 
 config.font = wezterm.font_with_fallback({
-  { family = "NotoMono Nerd Font" },
-  { family = "Noto Color Emoji" },
+    "JetBrainsMono Nerd Font",
+    "Noto Color Emoji",
 })
 
 config.font_size = 20.0
