@@ -3,7 +3,11 @@
 /herdr/.config/herdr/plugins.json
 /herdr/.config/herdr/session.json
 /herdr/.config/herdr/herdr-client.log
+/herdr/.config/herdr/herdr-server.log
 
+# Python bytecode/cache directories
+**/__pycache__/
+*.py[cod]
 
 # Neovim/Vim Spell-Dateien
 /nvim/.config/nvim/nvim.log
